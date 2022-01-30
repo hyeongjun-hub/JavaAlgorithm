@@ -6,7 +6,7 @@ public class Main {
         num1 = 16;
         num2 = 8;
 
-        int smallNum = num1 < num2? num1 : num2;
+        int smallNum = num1 < num2 ? num1 : num2;
         int gcd = 1;
 
         for(; smallNum>0 ; smallNum--){
