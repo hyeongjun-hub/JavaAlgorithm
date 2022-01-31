@@ -20,6 +20,9 @@ public class Main {
             num /= 10;
         }
 
+
+
+
         System.out.println("result = " + result);
 
     }
