@@ -7,55 +7,24 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int inputNum;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void input() {
-        FastReader fr = new FastReader();
-        inputNum = fr.nextInt();
-    }
+        Integer.parseInt(br.readLine());	//첫 줄 N 은 안쓰이므로 입력만 받는다.
+        StringTokenizer st = new StringTokenizer(br.readLine()," ");
 
-    public static void main(String[] args) {
-        input();
-        int maxNum;
-        int minNum;
+        int max = -1000001;
+        int min = 1000001;
 
-    }
-
-    static class FastReader {
-        BufferedReader br;
-        StringTokenizer st;
-
-        public FastReader(){
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-
-        String next(){
-            while(st == null || !st.hasMoreTokens()){
-                try{
-                    st = new StringTokenizer(br.readLine());
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
+        while(st.hasMoreTokens()) {
+            int val = Integer.parseInt(st.nextToken());
+            if(val>max) {
+                max = val;
             }
-            return st.nextToken();
-        }
-
-        int nextInt(){
-            return Integer.parseInt(next());
-        }
-
-        Double nextDouble(){
-            return Double.parseDouble(next());
-        }
-
-        String nextLine(){
-            String str = "";
-            try{
-                str = br.readLine();
-            } catch(IOException e){
-                e.printStackTrace();
+            if(val<min) {
+                min = val;
             }
-            return str;
         }
+        System.out.println(min + " " + max);
     }
 }
