@@ -47,27 +47,21 @@ public class Main {
     public static void main(String[] args) {
         FastReader fr = new FastReader();
         int rangeNum = fr.nextInt();
-        int[] stairs = new int[rangeNum];
+        int[] stairs = new int[rangeNum + 1];
+        int[] stairsClone = new int[rangeNum + 1];
+
         for (int i = 0; i < rangeNum; i++) {
             stairs[i] = fr.nextInt();
         }
 
-        int[] stairsClone = stairs.clone();
+        stairsClone[0] = stairs[0];
+        stairsClone[1] = stairs[1] + stairs[0];
+        stairsClone[2] = Math.max(stairs[0], stairs[1]) + stairs[2];
 
-        if (rangeNum>= 2){
-            stairsClone[2] = stairs[1] + stairs[2];
+        for (int i = 3; i < rangeNum; i++) {
+            stairsClone[i] = Math.max(stairsClone[i - 2], stairsClone[i - 3] + stairs[i - 1]) + stairs[i];
         }
 
-        for (int i = 1; i < rangeNum; i++) {
-            if (i == 1) {
-                stairsClone[i] += stairsClone[i-1];
-            } else if (i == 2) {
-                stairsClone[i] = stairs[i - 1] + stairs[i];
-            } else {
-                stairsClone[i] = Math.max(stairsClone[i - 2] + stairs[i], stairsClone[i - 3] + stairs[i - 1] + stairs[i]);
-            }
-        }
         System.out.println(stairsClone[rangeNum-1]);
     }
-
 }
