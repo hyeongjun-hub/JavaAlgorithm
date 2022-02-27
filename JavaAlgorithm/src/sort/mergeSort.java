@@ -53,7 +53,7 @@ public class mergeSort {
         for (int i = 0; i < 100; i++) {
             testData.add((int) (Math.random() * 100));
         }
-        split(testData);
+        testData = split(testData);
         System.out.println(testData);
     }
 }
