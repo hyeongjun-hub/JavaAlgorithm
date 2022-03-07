@@ -1,9 +1,8 @@
 package sort;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class mergeSort {
+public class MergeSort {
     public static ArrayList<Integer> split(ArrayList<Integer> dataList) {
         if (dataList.size() <= 1) {
             return dataList;
