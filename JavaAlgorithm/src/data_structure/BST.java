@@ -1,5 +1,7 @@
 package data_structure;
 
+
+//binary search tree
 public class BST {
 
     Node head = null;
