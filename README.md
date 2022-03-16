@@ -1,8 +1,11 @@
 # Java Algorithm
 
 - 폴더명
-    * 기본문제 : no[번호]
-    * 백준 : _[문제번호]
+    * 기본문제(algorithm_basic_100) : no[번호]
+    * 백준(baekjoon) : _[문제번호]
+    * 데이터구조(data)structure)
+    * 알고리즘기법(ps_method)
+    * 정렬알고리즘(sort)
 - commit message
 
 ```
