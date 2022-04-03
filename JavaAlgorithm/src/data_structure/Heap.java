@@ -112,7 +112,5 @@ public class Heap {
         System.out.println("max1 = " + max1);
         int max2 = heapTest.pop();
         System.out.println("max2 = " + max2);
-
     }
-
 }
