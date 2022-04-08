@@ -93,6 +93,7 @@ class Edge implements Comparable<Edge> {
     }
 };
 
-
+// 시간복잡도
+// O(ElogE)
 
 
