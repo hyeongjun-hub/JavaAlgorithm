@@ -12,9 +12,9 @@ import java.util.PriorityQueue;
 // inf inf inf inf inf inf     / 5 6 8
 
 public class Dijkstra {
-    public HashMap<String, Integer> dijkstraFunc(HashMap<String, ArrayList<Edge>> graph, String start) {
-        Edge edgeNode, adjacentNode;
-        ArrayList<Edge> nodeList;
+    public HashMap<String, Integer> dijkstraFunc(HashMap<String, ArrayList<nodeEdge>> graph, String start) {
+        nodeEdge edgeNode, adjacentNode;
+        ArrayList<nodeEdge> nodeList;
         int currentDistance, weight, distance;
         String currentNode, adjacent;
 
@@ -26,8 +26,8 @@ public class Dijkstra {
         distances.put(start, 0);
 
         // 우선 순위 큐
-        PriorityQueue<Edge> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(new Edge(distances.get(start), start));
+        PriorityQueue<nodeEdge> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(new nodeEdge(distances.get(start), start));
 
         // 알고리즘 작성
         while (priorityQueue.size() > 0) {
@@ -48,7 +48,7 @@ public class Dijkstra {
 
                 if (distance < distances.get(adjacent)) {
                     distances.put(adjacent, distance);
-                    priorityQueue.add(new Edge(distance, adjacent));
+                    priorityQueue.add(new nodeEdge(distance, adjacent));
                 }
             }
         }
@@ -58,13 +58,13 @@ public class Dijkstra {
     }
 
     public static void main(String[] args) {
-        HashMap<String, ArrayList<Edge>> graph = new HashMap<>();
-        graph.put("A", new ArrayList<>(Arrays.asList(new Edge(8, "B"), new Edge(1, "C"), new Edge(2, "D"))));
+        HashMap<String, ArrayList<nodeEdge>> graph = new HashMap<>();
+        graph.put("A", new ArrayList<>(Arrays.asList(new nodeEdge(8, "B"), new nodeEdge(1, "C"), new nodeEdge(2, "D"))));
         graph.put("B", new ArrayList<>());
-        graph.put("C", new ArrayList<>(Arrays.asList(new Edge(5, "B"), new Edge(2, "D"))));
-        graph.put("D", new ArrayList<>(Arrays.asList(new Edge(3, "E"), new Edge(5, "F"))));
-        graph.put("E", new ArrayList<>(Arrays.asList(new Edge(1, "F"))));
-        graph.put("F", new ArrayList<>(Arrays.asList(new Edge(5, "A"))));
+        graph.put("C", new ArrayList<>(Arrays.asList(new nodeEdge(5, "B"), new nodeEdge(2, "D"))));
+        graph.put("D", new ArrayList<>(Arrays.asList(new nodeEdge(3, "E"), new nodeEdge(5, "F"))));
+        graph.put("E", new ArrayList<>(Arrays.asList(new nodeEdge(1, "F"))));
+        graph.put("F", new ArrayList<>(Arrays.asList(new nodeEdge(5, "A"))));
         Dijkstra dObject = new Dijkstra();
         System.out.println(dObject.dijkstraFunc(graph, "A"));
     }
@@ -72,12 +72,12 @@ public class Dijkstra {
 
 }
 
-class Edge implements Comparable<Edge> {
+class nodeEdge implements Comparable<nodeEdge> {
 
     public int distance;
     public String vertex;
 
-    public Edge(int distance, String vertex) {
+    public nodeEdge(int distance, String vertex) {
         this.distance = distance;
         this.vertex = vertex;
     }
@@ -88,7 +88,7 @@ class Edge implements Comparable<Edge> {
     }
 
     @Override
-    public int compareTo(Edge o) {
+    public int compareTo(nodeEdge o) {
         return this.distance - o.distance;
     }
 };
