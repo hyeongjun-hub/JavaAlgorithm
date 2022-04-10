@@ -128,4 +128,7 @@ class Edge implements Comparable<Edge> {
     public int compareTo(Edge o) {
         return this.weight - o.weight;
     }
+
+    // 시간 복잡도
+    // O(ElogE)
 }
