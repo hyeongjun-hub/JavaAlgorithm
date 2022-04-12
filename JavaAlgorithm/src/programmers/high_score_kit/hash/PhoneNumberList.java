@@ -21,11 +21,12 @@ import java.util.Arrays;
 public class PhoneNumberList {
     public boolean solution(String[] phone_book) {
         boolean answer = true;
+        // 배열을 정렬
         Arrays.sort(phone_book);
+        // 다음내용이 지금 index 내용으로 시작한다면 false를 return
         for (int i=0; i<phone_book.length-1; i++) {
             if (phone_book[i+1].startsWith(phone_book[i])) {
-                answer = false;
-                break;
+                return false;
             }
         }
         return answer;

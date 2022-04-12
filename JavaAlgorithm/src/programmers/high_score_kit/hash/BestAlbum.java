@@ -54,24 +54,25 @@ public class BestAlbum {
             unsortedGenreList.put(genres[i], unsortedGenreList.getOrDefault(genres[i], 0) + plays[i]);
         }
 
-        // 높은 순으로 entry set 가져옴 (장르)
+        // 높은 순으로 entry set(key, value) 가져와 (장르) 새로운 Map 생성
         LinkedHashMap<String, Integer> sortedGenreList = new LinkedHashMap<>();
         unsortedGenreList.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(x -> sortedGenreList.put(x.getKey(), x.getValue()));
 
         ArrayList<Album> result = new ArrayList<>();
-
         for(String genre : sortedGenreList.keySet()){
+            // 장르마다 리스트를 생성
             ArrayList<Album> list = new ArrayList<>();
             for(int i=0; i<genres.length; i++){
                 if(genres[i].equals(genre)){
                     list.add(new Album(i, genre, plays[i]));
                 }
             }
+            // 정의한 comparable로 리스트 재정렬
             Collections.sort(list);
             result.add(list.get(0)); // 1개는 무조건 수록
-            if(list.size()!=1){ // 더 수록할 곡이 있으면(==장르 내의 노래가 1개보다 많으면) 수록
+            if(list.size()!=1){ // 더 수록할 곡이 있으면 수록 (총 두개)
                 result.add(list.get(1));
             }
         }

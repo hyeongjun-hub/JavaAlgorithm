@@ -28,9 +28,11 @@ clothes의 모든 원소는 문자열로 이루어져 있습니다.
 public class Camouflage {
     public int solution(String[][] clothes) {
         HashMap<String, Integer> clothList = new HashMap<>();
+        // 의상의 종류, 개수 map 생성
         for (String[] cloth : clothes) {
             clothList.put(cloth[1], clothList.getOrDefault(cloth[1], 0) + 1);
         }
+        // 의상의 개수와 선택안함(1)을 더해 각 의상 종류로 곱한 경우의 수 산출, 전부 선택안함(1)을 뺀 것을 return
         int answer = 1;
         Iterator<Integer> iterator = clothList.values().iterator();
         while (iterator.hasNext()) {
