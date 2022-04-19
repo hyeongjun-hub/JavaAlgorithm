@@ -27,19 +27,25 @@ location은 0 이상 (현재 대기목록에 있는 작업 수 - 1) 이하의 �
 public class Printer {
     public int solution(int[] priorities, int location) {
         int answer = 0;
-
+        // 주어진 배열을 List로 변환
         List<Integer> priorityList = Arrays.stream(priorities).boxed().collect(Collectors.toList());
         while (location >= 0) {
+            // 내 문서 차례일 때
             if (location == 0) {
+                // 뒤에 우선순위가 높은 대기자가 있을 경우 제일 뒤로 이동, location 끝 번호로 이동
                 if (priorityList.get(0) < Collections.max(priorityList)) {
                     priorityList.add(priorityList.remove(0));
                     location = priorityList.size() - 1;
                 } else
+                    // 아니면 return
                     return answer + 1;
+            // 다른 문서 차례일 때
             } else {
+                // 뒤에 높은 대기자가 있을 경우 제일 뒤로 이동
                 if (priorityList.get(0) < Collections.max(priorityList)) {
                     priorityList.add(priorityList.remove(0));
                 } else {
+                    // 아니면 출력 (리스트에서 제거)
                     answer++;
                     priorityList.remove(0);
                 }
