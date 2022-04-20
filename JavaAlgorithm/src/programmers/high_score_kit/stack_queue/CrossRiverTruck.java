@@ -58,22 +58,22 @@ public class CrossRiverTruck {
         return answer + bridge_length;
 
         // 처음 생각한 풀이
-        /* Queue<Integer> ingTrucks = new LinkedList<>();
-        for (int i = 0; i < bridge_length; i++) {
-            ingTrucks.add(0);
-        }
-        int sec = 0, sum = 0;
-        for (int truck : truck_weights) {
-            while (sum + truck - ingTrucks.peek() > weight) {
-                sum -= ingTrucks.poll();
-                ingTrucks.offer(0);
-                sec++;
-            }
-            sum = sum - ingTrucks.poll() + truck;
-            ingTrucks.offer(truck);
-            sec++;
-        }
-        return sec + bridge_length; */
+//         Queue<Integer> ingTrucks = new LinkedList<>();
+//        for (int i = 0; i < bridge_length; i++) {
+//            ingTrucks.add(0);
+//        }
+//        int sec = 0, sum = 0;
+//        for (int truck : truck_weights) {
+//            while (sum + truck - ingTrucks.peek() > weight) {
+//                sum -= ingTrucks.poll();
+//                ingTrucks.offer(0);
+//                sec++;
+//            }
+//            sum = sum - ingTrucks.poll() + truck;
+//            ingTrucks.offer(truck);
+//            sec++;
+//        }
+//        return sec + bridge_length;
     }
 
     public static void main(String[] args) {
