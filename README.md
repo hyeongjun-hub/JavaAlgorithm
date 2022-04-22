@@ -8,6 +8,10 @@
     * 알고리즘기법(ps_method)
     * 정렬알고리즘(sort)
 - commit message
+  - docs: 문서 작성
+  - add: 파일/코드 추가
+  - update: 파일/코드 수정
+  - delete: 파일/코드 삭제
 
 ```
 Add: 파일 추가
