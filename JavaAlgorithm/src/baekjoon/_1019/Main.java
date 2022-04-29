@@ -48,24 +48,49 @@ public class Main {
         }
     }
 
-    static long N;
+    static int N;
+    static int multi = 1;
+    static int[] pages = new int[10];
 
     public static void input() {
         FastReader fr = new FastReader();
-        N = fr.nextLong();
+        N = fr.nextInt();
     }
 
     public static void main(String[] args) {
         input();
-        int[] pages = new int[10];
-        for (int i = 1; i <= N; i++) {
-            char[] temps = Integer.toString(i).toCharArray();
-            for(char temp: temps){
-                pages[temp - '0']++;
+        int start = 1;
+        int end = N;
+        while(start<=end){
+            while(start%10!=0 && start<=end){
+                solve(start);
+                start++;
             }
+
+            if(start>end) break;
+
+            while(end%10!=9 && start<=end){
+                solve(end);
+                end--;
+            }
+            start/=10;
+            end/=10;
+
+            for(int i=0; i<10; i++){
+                pages[i] += (end-start+1)*multi;
+            }
+            multi *= 10;
         }
+
         for (int page: pages){
-            System.out.println(page + " ");
+            System.out.print(page + " ");
+        }
+    }
+
+    private static void solve(int s){
+        while (s > 0) {
+            pages[s%10]+=multi;
+            s/=10;
         }
     }
 }
