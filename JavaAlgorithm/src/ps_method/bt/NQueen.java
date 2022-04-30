@@ -8,6 +8,7 @@ public class NQueen {
         Integer currentRow = candidate.size();
         for (int i = 0; i < currentRow; i++) {
             if(candidate.get(i) == currentCol || Math.abs(candidate.get(i) - currentCol)==currentRow-i){
+                // 수직 || 대각선
                 return false;
             }
         }
@@ -26,6 +27,8 @@ public class NQueen {
             if(this.available(currentCandidate, i)){
                 currentCandidate.add(i);
                 dfsFunc(N, currentRow + 1, currentCandidate);
+                // 만약 재귀함수를 호출하고 파고 파고 들어가 결과를 출력하고 return 하였으면 여기까지 안왔겠지만
+                // 출력을 못했으면 candidate에 삽입한 값을 삭제한다.
                 currentCandidate.remove(currentCandidate.size() - 1);
             }
         }
