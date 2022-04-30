@@ -1,6 +1,5 @@
 package data_structure;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -33,8 +32,9 @@ public class Prim {
         }
 
         connectedNodes.add(startNode);
-        candidateEdgeList = adjacentEdges.getOrDefault(startNode, new ArrayList<Edge>());
-        PriorityQueue<Edge> priorityQueue = new PriorityQueue<Edge>();
+        candidateEdgeList = adjacentEdges.getOrDefault(startNode, new ArrayList<>());
+
+        PriorityQueue<Edge> priorityQueue = new PriorityQueue<>();
         for (int index = 0; index < candidateEdgeList.size(); index++) {
             priorityQueue.add(candidateEdgeList.get(index));
         }
@@ -46,7 +46,7 @@ public class Prim {
                 connectedNodes.add(poppedEdge.nodeV);
                 mst.add(new Edge(poppedEdge.weight, poppedEdge.nodeU, poppedEdge.nodeV));
 
-                ArrayList<Edge> adjacentEdgeNodes = adjacentEdges.getOrDefault(poppedEdge.nodeV, new ArrayList<Edge>());
+                ArrayList<Edge> adjacentEdgeNodes = adjacentEdges.getOrDefault(poppedEdge.nodeV, new ArrayList<>());
                 for (int index = 0; index < adjacentEdgeNodes.size(); index++) {
                     Edge adjacentEdgeNode = adjacentEdgeNodes.get(index);
                     if(!connectedNodes.contains(adjacentEdgeNode.nodeV)) {

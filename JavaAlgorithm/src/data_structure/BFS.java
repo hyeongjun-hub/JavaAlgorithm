@@ -30,7 +30,7 @@ public class BFS {
         needVisit.add(startNode);
 
         while(needVisit.size() > 0){
-            String node = needVisit.remove(0);
+            String node = needVisit.remove(0); // queue의 poll과 같음
 
             if (!visited.contains(node)) {
                 visited.add(node);
