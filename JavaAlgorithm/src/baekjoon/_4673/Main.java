@@ -1,4 +1,4 @@
-package baekjoon._1019;
+package baekjoon._4673;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,10 +29,6 @@ public class Main {
             return Integer.parseInt(next());
         }
 
-        long nextLong(){
-            return Long.parseLong(next());
-        }
-
         Double nextDouble(){
             return Double.parseDouble(next());
         }
@@ -48,52 +44,34 @@ public class Main {
         }
     }
 
-    static int N;
-    static int multi = 1;
-    static int[] pages = new int[10];
-
-    public static void input() {
-        FastReader fr = new FastReader();
-        N = fr.nextInt();
-    }
+    static boolean[] check = new boolean[10001];
 
     public static void main(String[] args) {
-        input();
-        int start = 1;
-        int end = N;
-        while(start<=end){
-            while(start%10!=0 && start<=end){
-                solve(start);
-                start++;
+        for (int i = 1; i < 10001; i++) {
+            int n = d(i);
+
+            if (n < 10001) {
+                check[n] = true;
             }
-
-            if(start>end) break;
-
-            while(end%10!=9 && start<=end){
-                solve(end);
-                end--;
-            }
-
-            // 0 ~ 9 로 만들기 끝
-
-            start/=10;
-            end/=10;
-
-            for(int i=0; i<10; i++){
-                pages[i] += (end-start+1)*multi;
-            }
-            multi *= 10;
         }
 
-        for (int page: pages){
-            System.out.print(page + " ");
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i < 10001; i++) {
+            if(!check[i]) sb.append(i).append("\n");
         }
+        System.out.println(sb);
     }
 
-    private static void solve(int s){
-        while (s > 0) {
-            pages[s%10]+=multi;
-            s/=10;
+    public static int d(int num) {
+        int sum = num;
+
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
         }
+
+        return sum;
     }
 }
+

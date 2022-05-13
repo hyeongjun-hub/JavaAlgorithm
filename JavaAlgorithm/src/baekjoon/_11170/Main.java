@@ -1,4 +1,4 @@
-package baekjoon._1019;
+package baekjoon._11170;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,10 +29,6 @@ public class Main {
             return Integer.parseInt(next());
         }
 
-        long nextLong(){
-            return Long.parseLong(next());
-        }
-
         Double nextDouble(){
             return Double.parseDouble(next());
         }
@@ -48,52 +44,53 @@ public class Main {
         }
     }
 
-    static int N;
-    static int multi = 1;
-    static int[] pages = new int[10];
-
-    public static void input() {
-        FastReader fr = new FastReader();
-        N = fr.nextInt();
-    }
+    static int N, M, answer, multi;
 
     public static void main(String[] args) {
-        input();
-        int start = 1;
-        int end = N;
-        while(start<=end){
-            while(start%10!=0 && start<=end){
-                solve(start);
+        FastReader fr = new FastReader();
+        StringBuilder sb = new StringBuilder();
+        int repeat = fr.nextInt();
+        for (int i = 0; i < repeat; i++) {
+            N = fr.nextInt();
+            M = fr.nextInt();
+            int start = N;
+            int end = M;
+            answer = 0;
+            multi = 1;
+            if(N == 0) {
+                answer += 1;
                 start++;
             }
 
-            if(start>end) break;
+            while (start <= end) {
+                while (start % 10 != 0 && start <= end) {
+                    findRest(start);
+                    start++;
+                }
 
-            while(end%10!=9 && start<=end){
-                solve(end);
-                end--;
+                if(start > end) break;
+
+                while (end % 10 != 9 && start <= end) {
+                    findRest(end);
+                    end--;
+                }
+
+                start/=10;
+                end/=10;
+
+                answer += (end - start + 1) * multi;
+
+                multi *= 10;
             }
-
-            // 0 ~ 9 로 만들기 끝
-
-            start/=10;
-            end/=10;
-
-            for(int i=0; i<10; i++){
-                pages[i] += (end-start+1)*multi;
-            }
-            multi *= 10;
+            sb.append(answer).append("\n");
         }
-
-        for (int page: pages){
-            System.out.print(page + " ");
-        }
+        System.out.println(sb);
     }
 
-    private static void solve(int s){
-        while (s > 0) {
-            pages[s%10]+=multi;
-            s/=10;
+    public static void findRest(int start) {
+        while (start > 0) {
+            if(start % 10 == 0) answer += multi;
+            start /= 10;
         }
     }
 }
