@@ -100,5 +100,5 @@ DP - `1463`, `11726`, 11727, 9095, 10844, 11057, 2193, 9465, 2156, 11053, 11055,
 ---
 
 ## 알고리즘 스터디
-notion : https://pinnate-goldfish-74c.notion.site/97337a38ed6f437db78954adaea81344?v=eb0301a19a9641e4b853f228294c61b4
+notion : [스터디 notion](https://pinnate-goldfish-74c.notion.site/97337a38ed6f437db78954adaea81344?v=eb0301a19a9641e4b853f228294c61b4)
 매주 문제 풀고 본인 문제 발표하는 방식
