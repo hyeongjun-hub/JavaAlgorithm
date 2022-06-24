@@ -1,26 +1,10 @@
-package baekjoon._13144;
+package baekjoon._16472;
 
 /*
-List of Unique Numbers
-투포인터
+고냥이
+(투 포인터)
 
-* 가장 쉬운 방법
-1. 왼쪽 시작 L 결정 -> O(N)
-2. 오른쪽 끝을 R을 L부터 시작해서 이동 -> O(N)
-3. R을 이동해서 추가된 원소가 [L, R-1]에 있는지 확인 -> O(N)
-=> O(N^3)
 
-* 개선된 방법
-3. R을 이동해서 추가된 원소가 [L, R-1]안에 있는지 확인을 counting
-count라는 큰 배열에 개수를 넣음
--> O(1)
-=> O(N^2)
-
-* 투포인터 방법
-1. 왼쪽 시작 L 결정 -> O(N)
-2. 오른쪽 끝 R을 이전의 R부터 시작해서 이동
-3. R을 이동해서 추가된 원소가 [L, R-1]안에 있는지 확인 -> O(1)
-=> O(N)
 
  */
 
@@ -31,44 +15,50 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int N;
-    static int[] A, cnt;
+    static int N, kind;
+    static String A;
+    static int[] cnt = new int[26]; //0~25 (a~z)
 
     public static void input() {
         FastReader fr = new FastReader();
         N = fr.nextInt();
-        A = new int[N + 1];
-        for (int i = 1; i <= N; i++) {
-            A[i] = fr.nextInt();
-        }
-        cnt = new int[100000 + 1];
+        A = fr.nextLine();
     }
 
-    static void pro() {
-        long ans = 0;
+    public static void add(char x) {
+        cnt[x - 'a']++;
+        if (cnt[x - 'a'] == 1) kind++;
+    }
 
-        for (int L = 1, R = 0; L <= N; L++) {
-            // R을 옮길 수 있는 만큼 옮긴다.
-            while (R + 1 <= N && cnt[A[R + 1]] == 0) {
-                R++;
-                cnt[A[R]]++;
+    public static void erase(char x) {
+        cnt[x - 'a']--;
+        if (cnt[x - 'a'] == 0) kind--;
+    }
+
+    public static void pro() {
+        int len = A.length();
+        int ans = 0;
+        for (int R = 0, L = 0; R < len; R++) {
+            //R번 째 문자를 오른쪽에 추가
+            add(A.charAt(R));
+
+            // 불가능하다면, 가능할 때 까지 L을 이동
+            while(kind > N) {
+                erase(A.charAt(L++));
             }
 
-            // 정답을 갱신한다
-            ans += R - L + 1;
-
-            // L을 옮겨주면서 A[L]의 개수를 감소시킨다.
-            cnt[A[L]]--;
-
+            // 정답 갱신
+            ans = Math.max(ans, R - L + 1);
         }
-
         System.out.println(ans);
     }
 
     public static void main(String[] args) {
         input();
         pro();
+
     }
+
 
     static class FastReader {
         BufferedReader br;
