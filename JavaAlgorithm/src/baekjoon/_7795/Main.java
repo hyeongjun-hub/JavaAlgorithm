@@ -1,8 +1,8 @@
 package baekjoon._7795;
 
 /*
-이분탐색
 먹을 것인가 먹힐 것인가
+(이분탐색)
 
 N = 20,000
 M = 20,000
@@ -44,7 +44,7 @@ public class Main {
     }
 
     // B[L..R]에서 X(A[i]) 보다 작은 수 중 제일 오른 쪽 인덱스를 return하는 함수
-    static int lower_bound(int[] B, int L, int R, int X) {
+    static int lower_bound(int L, int R, int X) {
         int result = L - 1;
         while (L <= R) {
             int mid = (L + R) / 2;
@@ -63,7 +63,7 @@ public class Main {
         Arrays.sort(B);
         int ans = 0;
         for (int i = 0; i < N; i++) {
-            ans += lower_bound(B, 0, M - 1, A[i]);
+            ans += lower_bound(0, M - 1, A[i]);
         }
         System.out.println(ans);
     }
