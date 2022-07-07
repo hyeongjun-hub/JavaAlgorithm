@@ -1,8 +1,14 @@
-package baekjoon._2252;
+package baekjoon._1005;
 
 /*
-줄 세우기
-(위상정렬)
+ACM craft
+(위상 정렬)
+
+정답 최대치
+10^3 * 10^5
+-> Integer
+
+
  */
 
 import java.io.BufferedReader;
@@ -14,22 +20,24 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    static int N, M;
-    static ArrayList<Integer>[] adj; // 인접 리스트
-    static int[] indeg; // 들어오는 정점들
+    static FastReader fr = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    public static void input() {
-        FastReader fr = new FastReader();
-        // Adjacent List 생성 및 indegree 계산하기
+    static int N, M;
+    static int[] indeg, T_done, T;
+    static ArrayList<Integer>[] adj;
 
+    public static void input() {
+        // Testcase가 존재하는 문제이므로 "배열 초기화"에 유의
         N = fr.nextInt();
         M = fr.nextInt();
         adj = new ArrayList[N + 1];
         indeg = new int[N + 1];
+        T = new int[N + 1];
+        T_done = new int[N + 1];
         for (int i = 1; i <= N; i++) {
             adj[i] = new ArrayList<>();
+            T[i] = fr.nextInt();
         }
         for (int i = 0; i < M; i++) {
             int x = fr.nextInt();
@@ -37,36 +45,39 @@ public class Main {
             adj[x].add(y);
             indeg[y]++;
         }
-
     }
 
     public static void pro() {
         Deque<Integer> queue = new LinkedList<>();
-        // 제일 앞에 "정렬될 수 있는" 정점 찾기 (indegree가 0)
+        // 제일 앞에 "정렬될 수 있는" 정점 찾기
         for (int i = 1; i <= N; i++) {
-            if(indeg[i] == 0) queue.add(i);
+            if (indeg[i] == 0) {
+                queue.add(i);
+                T_done[i] = T[i];
+            }
         }
 
-        // 정렬될 수 있는 정점이 있다면?
-        // 1. 정렬 결과에 추가하기
-        // 2. 정점과 연결된 간선 제거하기
-        // 3. 새롭게 "정렬 될 수 있는" 정점
+        // 위상 정렬 순서대로 T_done 계산을 함께 해주기
         while (!queue.isEmpty()) {
             int x = queue.poll();
-            sb.append(x).append(' ');
             for (int y : adj[x]) {
                 indeg[y]--;
                 if(indeg[y] == 0) queue.add(y);
+                T_done[y] = Math.max(T_done[y], T_done[x] + T[y]);
             }
         }
-        System.out.println(sb);
+        int W = fr.nextInt();
+        System.out.println(T_done[W]);
     }
 
     public static void main(String[] args) {
-        input();
-        pro();
+        int Q = fr.nextInt();
+        while (Q > 0) {
+            Q--;
+            input();
+            pro();
+        }
     }
-
 
     static class FastReader {
         BufferedReader br;
