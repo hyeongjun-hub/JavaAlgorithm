@@ -1,5 +1,10 @@
 package baekjoon._9095;
 
+/*
+1, 2, 3 더하기
+(Dynamic Programming)
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,22 +15,30 @@ public class Main {
     static int T, n;
     static StringBuilder sb = new StringBuilder();
     static FastReader fr = new FastReader();
-    static int[] nums;
+
+    static int[] Dy;
+
+    public static void preprocess() {
+        Dy = new int[15];
+        // 초기값 구하기
+        Dy[1] = 1;
+        Dy[2] = 2;
+        Dy[3] = 3;
+
+        // 점화식을 토대로 Dy 배열 채우기
+        for (int i = 4; i <= 11; i++) {
+            Dy[i] = Dy[i - 3] + Dy[i - 2] + Dy[i - 1];
+        }
+    }
 
     public static void main(String[] args) {
         T = fr.nextInt();
-        nums = new int[11];
-        nums[1] = 1;
-        nums[2] = 2;
-        nums[3] = 4;
 
-        for (int i = 4; i <= 10; i++) {
-            nums[i] = nums[i - 3] + nums[i - 2] + nums[i - 1];
-        }
+        preprocess();
 
         for (int i = 0; i < T; i++) {
             n = fr.nextInt();
-            sb.append(nums[n]).append("\n");
+            sb.append(Dy[n]).append("\n");
         }
 
         System.out.println(sb);
@@ -52,20 +65,6 @@ public class Main {
 
         int nextInt(){
             return Integer.parseInt(next());
-        }
-
-        Double nextDouble(){
-            return Double.parseDouble(next());
-        }
-
-        String nextLine(){
-            String str = "";
-            try{
-                str = br.readLine();
-            } catch(IOException e){
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 }
