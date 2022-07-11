@@ -1,92 +1,55 @@
 package baekjoon._15652;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-// 15651과 유사한 문제, 하지만 비내림차순이어야함 (조건이 존재)
-// N=4, M=3
-// _ _ _
-
-// 시간복잡도
-// O(N^M) = O(8^8) ~= 88만
-// 1억보다 충분히 작기 때문에 구현할 가치 ok
-
-// 공간복잡도
-// O(M)
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    static StringBuilder sb = new StringBuilder();
+
     static int N, M;
-    static int[] selected;
+    static int[] arr, printArr;
+    static boolean[] isVisited;
+    static StringBuilder sb = new StringBuilder();
 
+    public static void main(String[] args) throws IOException{
+        Scanner sc = new Scanner(System.in);
 
-    static void input(){
-        FastReader scan = new FastReader();
-        N = scan.nextInt();
-        M = scan.nextInt();
-        selected = new int[M + 1];
-    }
+        N = sc.nextInt();
+        M = sc.nextInt();
 
-    static void rec_func(int k){
-        if(k == M + 1){
-            for(int i = 1; i <= M; i++){
-                sb.append(selected[i]).append(' ');
-            }
-            sb.append('\n');
-        }else{
-            int start = selected[k - 1];
-            if(start == 0) start = 1;
-            // 1부터 시작이 아니라 start를 구함
-            for(int cand = start; cand <= N; cand++){
-                selected[k] = cand;
-                rec_func(k+1);
-                selected[k] = 0;
-            }
+        arr = new int[N];
+        printArr = new int[M];
+        isVisited = new boolean[N];
+        for(int i=0; i<N; i++) {
+            arr[i] = sc.nextInt();
         }
-    }
 
-    public static void main(String[] args) {
-        input();
-        rec_func(1);
+        Arrays.sort(arr); // 오름차순으로 정렬
+
+        dfs(0, 0);
         System.out.println(sb);
     }
 
-    static class FastReader {
-        BufferedReader br;
-        StringTokenizer st;
-
-        public FastReader(){
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-
-        String next(){
-            while(st == null || !st.hasMoreTokens()){
-                try{
-                    st = new StringTokenizer(br.readLine());
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
+    static void dfs(int start, int depth) {
+        if(depth == M) {
+            for(int i=0; i<M; i++) {
+                sb.append(printArr[i]).append(" ");
             }
-            return st.nextToken();
+            sb.append("\n");
+            return;
         }
 
-        int nextInt(){
-            return Integer.parseInt(next());
-        }
-
-        Double nextDouble(){
-            return Double.parseDouble(next());
-        }
-
-        String nextLine(){
-            String str = "";
-            try{
-                str = br.readLine();
-            } catch(IOException e){
-                e.printStackTrace();
+        int before = -1;
+        for(int i=start; i<N; i++) {
+            int now = arr[i];
+            if(before == now || isVisited[i]) { // 중복된 수 이거나 이미 방문한 수라면 통과함
+                continue;
+            } else { // 아직 방문도 하지 않았고 중복된 수도 아니라면
+                before = now;
+                isVisited[i] = true;
+                printArr[depth] = arr[i];
+                dfs(i + 1, depth + 1);
+                isVisited[i] = false;
             }
-            return str;
         }
     }
 }
