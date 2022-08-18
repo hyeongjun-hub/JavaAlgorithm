@@ -1,0 +1,82 @@
+package baekjoon._17863;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    static int N, M, T;
+    static int[][] map;
+    static boolean[][] visit;
+    static int[][] dir = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+
+    public static void input() {
+        FastReader fr = new FastReader();
+        N = fr.nextInt();
+        M = fr.nextInt();
+        T = fr.nextInt();
+        map = new int[N+1][M+1];
+        visit = new boolean[N + 1][M + 1];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                map[i][j] = fr.nextInt();
+            }
+        }
+    }
+
+    public static void bfs() {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{0, 0});
+        visit[0][0] = true;
+        while (!queue.isEmpty()) {
+            int[] poll = queue.poll();
+            int r = poll[0];
+            int c = poll[1];
+            for (int i = 0; i < 4; i++) {
+                int nr = r + dir[i][0];
+                int nc = c + dir[i][1];
+
+            }
+        }
+
+    }
+
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader(){ br = new BufferedReader(new InputStreamReader(System.in));}
+
+        String next(){
+            while(st == null || !st.hasMoreTokens()){
+                try{
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() { return Integer.parseInt(next()); }
+
+        long nextLong() { return Long.parseLong(next()); }
+
+        Double nextDouble() { return Double.parseDouble(next()); }
+
+        String nextLine(){
+            String str = "";
+            try{
+                str = br.readLine();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}
