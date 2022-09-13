@@ -34,7 +34,8 @@ public class Main {
     }
 
     static int lower_bound(int[] A, int L, int R, int X) {
-        // A[L..R] 에서 X 이상의 수 중 제일 왼쪽 인덱스를 return 하는 함수
+        // A[L..R] 에서 X 이상의 수 중 제일 왼쪽(작은 값) 인덱스를 return 하는 함수
+        // 그러면 찾은값 또는 찾은 값의 왼쪽 값이 X랑 가장 가깝다
         // 그런게 없다면 R + 1 을 return
 
         int res = R + 1;
