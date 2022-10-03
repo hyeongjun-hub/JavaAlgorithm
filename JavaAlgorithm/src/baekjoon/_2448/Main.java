@@ -24,14 +24,14 @@ public class Main{
     }
 
     private static void makeBigStar(int k, String map[]) {
-        int bottom = 3 * (int)Math.pow(2, k);
-        int middle = bottom / 2;
+        int height = 3 * (int)Math.pow(2, k);
+        int middle = height / 2;
 
-        for (int i = middle; i < bottom; i++) {
+        for (int i = middle; i < height; i++) {
             map[i] = map[i - middle] + " " + map[i - middle];
         }
 
-        //빈 공간 추가
+        //이전 배열에 빈 공간 추가
         String space = "";
         while (space.length() < middle) {
             space += " ";
