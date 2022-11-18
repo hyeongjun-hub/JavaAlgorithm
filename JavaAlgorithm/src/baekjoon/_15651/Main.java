@@ -116,7 +116,7 @@ public class Main {
         ans = new int[M];
     }
 
-    public static void pro(int pos) {
+    public static void dfs(int pos) {
         if (pos == M) {
             for (int i = 0; i < M; i++) {
                 sb.append(ans[i]).append(' ');
@@ -126,14 +126,14 @@ public class Main {
         }
         for (int i = 1; i <= N; i++) {
             ans[pos] = i;
-            pro(pos + 1);
+            dfs(pos + 1);
             ans[pos] = 0;
         }
     }
 
     public static void main(String[] args) {
         input();
-        pro(0);
+        dfs(0);
         System.out.println(sb);
     }
 
