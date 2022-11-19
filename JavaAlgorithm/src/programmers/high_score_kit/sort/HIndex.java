@@ -20,7 +20,7 @@ public class HIndex {
     public static void main(String[] args) {
         HIndex hIndex = new HIndex();
         int solution = hIndex.solution(new int[]{3, 0, 6, 1, 5});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
 
     }
 }

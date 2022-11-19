@@ -29,6 +29,6 @@ public class MarathonLoser {
     public static void main(String[] args) {
         MarathonLoser marathonLoser = new MarathonLoser();
         String solution = marathonLoser.solution(new String[]{"leo", "kiki", "eden"}, new String[]{"eden", "kiki"});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }

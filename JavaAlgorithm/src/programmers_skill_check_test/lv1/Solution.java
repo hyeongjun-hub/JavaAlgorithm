@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Solution {
     /*
-     public int solution(int[] d, int budget) {
+     public int Solution(int[] d, int budget) {
         int answer = 0;
         int sum = 0;
         Arrays.sort(d);
@@ -30,7 +30,7 @@ public class Solution {
 //        int ans = 0;
 //    }
 //
-//    public int[] solution(String[] id_list, String[] report, int k) {
+//    public int[] Solution(String[] id_list, String[] report, int k) {
 //        int[] answer = {};
 //        HashMap<String, HashSet<String>> reported = new HashMap<>();
 //        HashMap<String, Integer> ans = new HashMap<>();

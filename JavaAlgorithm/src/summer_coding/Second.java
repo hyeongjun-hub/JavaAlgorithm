@@ -48,7 +48,7 @@ public class Second {
     public static void main(String[] args) {
         Second second = new Second();
         String[] solution = second.solution(new String[]{"[403]James", "[404]Azad,Louis,Andy", "[101]Azad,Guard"}, 403);
-//        String[] solution = second.solution(new String[]{"[1234]No,Body,In,Here", "[5678]Guard"}, 1234);
+//        String[] Solution = second.Solution(new String[]{"[1234]No,Body,In,Here", "[5678]Guard"}, 1234);
         System.out.println(Arrays.toString(solution));
     }
 }

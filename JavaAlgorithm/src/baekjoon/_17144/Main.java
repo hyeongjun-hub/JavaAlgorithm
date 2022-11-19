@@ -32,7 +32,7 @@ class Main {
             }
         }
 
-        // solution
+        // Solution
         solution();
     }
 

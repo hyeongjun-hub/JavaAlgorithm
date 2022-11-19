@@ -30,6 +30,6 @@ public class First {
     public static void main(String[] args) {
         First first = new First();
         int solution = first.solution(new int[][]{{80, 35}, {70, 38}, {100, 41}, {75, 30}, {160, 80}, {77, 29}, {181, 68}, {151, 76}});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }

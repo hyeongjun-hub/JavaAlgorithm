@@ -50,6 +50,6 @@ public class WayToSchool {
     public static void main(String[] args) {
         WayToSchool wayToSchool = new WayToSchool();
         int solution = wayToSchool.solution(4, 3, new int[][]{{2, 2}});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }

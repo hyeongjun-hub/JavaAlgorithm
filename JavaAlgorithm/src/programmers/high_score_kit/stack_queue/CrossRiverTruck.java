@@ -19,7 +19,7 @@ import java.util.Queue;
 8	    [7,4,5,6]   	[]	            []
 따라서, 모든 트럭이 다리를 지나려면 최소 8초가 걸립니다.
 
-solution 함수의 매개변수로 다리에 올라갈 수 있는 트럭 수 bridge_length, 다리가 견딜 수 있는 무게 weight, 트럭 별 무게 truck_weights가 주어집니다. 이때 모든 트럭이 다리를 건너려면 최소 몇 초가 걸리는지 return 하도록 solution 함수를 완성하세요.
+Solution 함수의 매개변수로 다리에 올라갈 수 있는 트럭 수 bridge_length, 다리가 견딜 수 있는 무게 weight, 트럭 별 무게 truck_weights가 주어집니다. 이때 모든 트럭이 다리를 건너려면 최소 몇 초가 걸리는지 return 하도록 Solution 함수를 완성하세요.
 
 제한 조건
 bridge_length는 1 이상 10,000 이하입니다.
@@ -78,8 +78,8 @@ public class CrossRiverTruck {
 
     public static void main(String[] args) {
         CrossRiverTruck crossRiverTruck = new CrossRiverTruck();
-//        int solution = crossRiverTruck.solution(2, 10, new int[]{7, 4, 5, 6});
+//        int Solution = crossRiverTruck.Solution(2, 10, new int[]{7, 4, 5, 6});
         int solution = crossRiverTruck.solution(100, 100, new int[]{10});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }

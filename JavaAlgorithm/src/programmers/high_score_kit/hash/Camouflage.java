@@ -15,7 +15,7 @@ import java.util.Set;
 상의	파란색 티셔츠
 하의	청바지
 겉옷	긴 코트
-스파이가 가진 의상들이 담긴 2차원 배열 clothes가 주어질 때 서로 다른 옷의 조합의 수를 return 하도록 solution 함수를 작성해주세요.
+스파이가 가진 의상들이 담긴 2차원 배열 clothes가 주어질 때 서로 다른 옷의 조합의 수를 return 하도록 Solution 함수를 작성해주세요.
 
 제한사항
 clothes의 각 행은 [의상의 이름, 의상의 종류]로 이루어져 있습니다.
@@ -43,8 +43,8 @@ public class Camouflage {
 
     public static void main(String[] args) {
         Camouflage camouflage = new Camouflage();
-//        int solution = camouflage.solution(new String[][]{{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}});
+//        int Solution = camouflage.Solution(new String[][]{{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}});
         int solution = camouflage.solution(new String[][]{{"crowmask", "face"}, {"bluesunglasses", "face"}, {"smoky_makeup", "face"}});
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }

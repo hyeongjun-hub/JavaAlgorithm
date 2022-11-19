@@ -23,6 +23,6 @@ public class Hotter {
     public static void main(String[] args) {
         Hotter hotter = new Hotter();
         int solution = hotter.solution(new int[]{1, 2, 3, 9, 10, 12}, 7);
-        System.out.println("solution = " + solution);
+        System.out.println("Solution = " + solution);
     }
 }
