@@ -22,16 +22,26 @@ public class Main {
     }
 
     public static void pro() {
+        StringBuilder sb = new StringBuilder();
         char[] charArray = inputString.toCharArray();
 
-        for (int i = 0; i < charArray.length; i++) {
-            char cur = charArray[i];
-            if (cur == bomb.charAt(bomb.length() - 1)) {
-
+        for (int i = 0; i < inputString.length(); i++) {
+            char cur = inputString.charAt(i);
+            sb.append(cur);
+            if (cur == bomb.charAt(bomb.length() - 1) && sb.length() >= bomb.length()) {
+                boolean same = true;
+                // 같은 지 확인
+                for (int j = 0; j < bomb.length()-1; j++) {
+                    if (bomb.charAt(j) != sb.charAt(sb.length() - bomb.length() + j)) {
+                        same = false;
+                        break;
+                    }
+                }
+                if(same) sb.delete(sb.length() - bomb.length(), sb.length());
             }
         }
-        if(inputString.length() == 0) inputString = "FRULA";
-        System.out.println(inputString);
+        if(sb.length() == 0) System.out.println("FRULA");
+        else System.out.println(sb);
 
     }
 
