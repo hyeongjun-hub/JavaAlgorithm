@@ -8,20 +8,20 @@ import java.util.StringTokenizer;
 public class Main {
 
     static int N, M;
-    static int[][] friend;
+    static boolean[][] friend;
     static int[] nums;
 
     public static void input() {
         FastReader fr = new FastReader();
         N = fr.nextInt();
         M = fr.nextInt();
-        friend = new int[N+1][N+1];
+        friend = new boolean[N+1][N+1];
         nums = new int[N + 1];
         for (int i = 0; i < M; i++) {
             int A = fr.nextInt();
             int B = fr.nextInt();
-            friend[A][B] = 1;
-            friend[B][A] = 1;
+            friend[A][B] = true;
+            friend[B][A] = true;
             nums[A]++;
             nums[B]++;
         }
@@ -32,10 +32,10 @@ public class Main {
 
         for (int i = 1; i < N; i++) {
             for (int j = 1; j <= N; j++) {
-                if(friend[i][j] != 1 || friend[j][i] != 1) continue;
+                if(!friend[i][j]|| !friend[j][i]) continue;
                 if(i==j)continue;
                 for (int k = 1; k <= N; k++) {
-                    if(friend[i][k] != 1 || friend[j][k] != 1 || friend[k][j] != 1 || friend[k][i] != 1) continue;
+                    if(!friend[i][k] || !friend[j][k] || !friend[k][j] || !friend[k][i]) continue;
                     if(i == k || j == k) continue;
                     int cnt = 0;
                     cnt += nums[i] - 2;
