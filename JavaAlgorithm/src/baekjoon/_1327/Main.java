@@ -59,7 +59,7 @@ public class Main {
         input();
     }
 
-    static class StrInt {
+    public static class StrInt {
         String str;
         int cnt;
 
