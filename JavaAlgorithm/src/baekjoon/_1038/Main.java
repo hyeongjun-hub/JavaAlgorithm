@@ -1,18 +1,22 @@
 package baekjoon._1038;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
     static List<Long> list = new ArrayList<>();
     static int N;
-    static int count = 0;
+
+    public static void input() {
+        FastReader fr = new FastReader();
+        N = fr.nextInt();
+    }
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        input();
 
-        N = Integer.parseInt(br.readLine());
         if(N <= 10) {
             System.out.print(N);
             return;
@@ -35,10 +39,45 @@ public class Main {
         if(modValue == 0) {
             return;
         }
-
+        // 1 10 , 2 21 210 20, ..
         for(long i=modValue-1; i>=0; i--) {
             long newValue = num * 10 + i;
             DFS(newValue);
         }
     } // End of DFS
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader(){ br = new BufferedReader(new InputStreamReader(System.in));}
+
+        String next(){
+            while(st == null || !st.hasMoreTokens()){
+                try{
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() { return Integer.parseInt(next()); }
+
+        long nextLong() { return Long.parseLong(next()); }
+
+        Double nextDouble() { return Double.parseDouble(next()); }
+
+        String nextLine(){
+            String str = "";
+            try{
+                str = br.readLine();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
 } // End of Main class
