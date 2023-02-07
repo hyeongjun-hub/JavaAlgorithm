@@ -7,9 +7,8 @@ import java.util.*;
 
 public class Main {
 
-    static int N, M, num;
+    static int N, M;
     static List<Integer> cranes, boxes;
-    static boolean[] visit;
 
     public static void input() {
         FastReader fr = new FastReader();
