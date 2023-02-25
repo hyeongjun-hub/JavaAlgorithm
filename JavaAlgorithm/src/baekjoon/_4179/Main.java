@@ -27,8 +27,8 @@ public class Main {
             String s = fr.nextLine();
             for (int j = 0; j < C; j++) {
                 map[i][j] = s.charAt(j);
-                fireMap[i][j] = R*C+1;
-                if(map[i][j] == 'J'){
+                fireMap[i][j] = R * C + 1;
+                if (map[i][j] == 'J') {
                     jr = i;
                     jc = j;
                 }
@@ -37,44 +37,44 @@ public class Main {
 
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
-                if(map[i][j] == 'F') fireBfs(i, j, true);
+                if (map[i][j] == 'F') bfs(i, j, true);
             }
         }
-        fireBfs(jr, jc, false);
+        bfs(jr, jc, false);
         System.out.println(answer);
     }
 
 
-    public static void fireBfs(int r, int c, boolean isFire) {
-        boolean[][] visit = new boolean[R][C];
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{r, c, 1});
-        visit[r][c] = true;
-        while (!queue.isEmpty()) {
-            int[] poll = queue.poll();
-            r = poll[0];
-            c = poll[1];
-            int dis = poll[2];
-            if(isFire) fireMap[r][c] = Math.min(dis, fireMap[r][c]);
-            for (int i = 0; i < 4; i++) {
-                int nr = r + dir[i][0];
-                int nc = c + dir[i][1];
-                if(nr < 0 || nc < 0 || nr >= R || nc >= C) {
-                    if(!isFire){
-                        if (dis < fireMap[r][c]) {
-                            answer = String.valueOf(dis);
-                            return;
-                        }
+public static void bfs(int r, int c, boolean isFire) {
+    boolean[][] visit = new boolean[R][C];
+    Queue<int[]> queue = new LinkedList<>();
+    queue.add(new int[]{r, c, 1});
+    visit[r][c] = true;
+    while (!queue.isEmpty()) {
+        int[] poll = queue.poll();
+        r = poll[0];
+        c = poll[1];
+        int dis = poll[2];
+        if (isFire) fireMap[r][c] = Math.min(dis, fireMap[r][c]);
+        for (int i = 0; i < 4; i++) {
+            int nr = r + dir[i][0];
+            int nc = c + dir[i][1];
+            if (nr < 0 || nc < 0 || nr >= R || nc >= C) {
+                if (!isFire) {
+                    if (dis < fireMap[r][c]) {
+                        answer = String.valueOf(dis);
+                        return;
                     }
-                    continue;
                 }
-                if(map[nr][nc] != '.') continue;
-                if(visit[nr][nc]) continue;
-                visit[nr][nc] = true;
-                queue.add(new int[]{nr, nc, dis + 1});
+                continue;
             }
+            if (map[nr][nc] != '.') continue;
+            if (visit[nr][nc]) continue;
+            visit[nr][nc] = true;
+            queue.add(new int[]{nr, nc, dis + 1});
         }
     }
+}
 
     public static void main(String[] args) {
         input();
@@ -84,26 +84,30 @@ public class Main {
         BufferedReader br;
         StringTokenizer st;
 
-        public FastReader(){ br = new BufferedReader(new InputStreamReader(System.in));}
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
 
-        String next(){
-            while(st == null || !st.hasMoreTokens()){
-                try{
+        String next() {
+            while (st == null || !st.hasMoreTokens()) {
+                try {
                     st = new StringTokenizer(br.readLine());
-                } catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             return st.nextToken();
         }
 
-        int nextInt() { return Integer.parseInt(next()); }
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
 
-        String nextLine(){
+        String nextLine() {
             String str = "";
-            try{
+            try {
                 str = br.readLine();
-            } catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return str;

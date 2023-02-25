@@ -8,45 +8,73 @@ import java.util.*;
 public class Main {
     static int N, M, ans;
     static int[] parent;
+    static boolean[] knowPeople;
 
     public static void input() {
         FastReader fr = new FastReader();
-        N = fr.nextInt();
-        M = fr.nextInt();
+        N = fr.nextInt(); // 사람 수
+        M = fr.nextInt(); // 파티 수
         parent = new int[N+1];
+        knowPeople = new boolean[N+1];
+        HashSet<Integer>[] parties = new HashSet[M+1]; // 각 파티에 온 사람 저장
+
+        // 초기화
         for (int i = 1; i <= N; i++) {
             parent[i] = i;
         }
+
         int know = fr.nextInt();
-        int knowMan = 0;
-        for (int i = 0; i < know; i++) {
+        // 아는 사람 저장
+        for (int i = 1; i <= know; i++) {
             int cur = fr.nextInt();
-            union(knowMan, cur);
+            knowPeople[cur] = true;
         }
-//        for (int i = 0; i < parent.length; i++) {
-//            System.out.println(parent[i]);
-//        }
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < M; i++) {
-            int repeat = fr.nextInt();
-            int first = fr.nextInt();
-            list.add(first);
-            Stack<Integer> temp = new Stack<>();
-            for (int j = 1; j < repeat; j++) {
-                int cur = fr.nextInt();
-                union(first, cur);
-                temp.add(cur);
+
+        for (int i = 1; i <= M; i++) {
+            parties[i] = new HashSet<>();
+            int partyNum = fr.nextInt(); // 파티오는 사람 수
+            int[] party = new int[partyNum+1];
+            for (int j = 1; j <= partyNum; j++) {
+                party[j] = fr.nextInt();
             }
-            while (temp.size() >= 2) {
-                union(temp.pop(), temp.peek());
+            if (partyNum <= 1) {
+                parties[i].add(party[1]);
+                continue;
+            }
+            // first와 모두 union -> first 갱신
+            for (int j = 1; j < partyNum; j++) {
+                int cur = party[j]; // 사람의 번호
+                int fut = party[j+1];
+                union(cur, fut);
+                parties[i].add(cur);
+                parties[i].add(fut);
+            }
+            // parties[i]에 모든 파티 참석자 들어있음
+        }
+
+        // 진실을 아는 사람과 같은 parent 라면 knowPeople[] 갱신
+        boolean[] visit = new boolean[N+1];
+        for (int i = 1; i <= N; i++) {
+            if (knowPeople[i] && !visit[i]) {
+                int root = find(i);
+                for (int j = 1; j <= N; j++) {
+                    if (find(j) == root) {
+                        knowPeople[j] = true;
+                        visit[j] = true;
+                    }
+                }
             }
         }
-//        for (int i = 0; i < parent.length; i++) {
-//            System.out.println(parent[i]);
-//        }
-        for (int i = 0; i < list.size(); i++) {
-            if(find(parent[list.get(i)]) != 0) ans++;
+
+        for (int i = 1; i <= M; i++) {
+            boolean flag = false;
+            // 만약 그 파티에서 진실을 아는 사람이 하나라도 있을 경우 break;
+            for (int person : parties[i]) {
+                if(knowPeople[person]){ flag = true; break;}
+            }
+            if(!flag) ans++;
         }
+
         System.out.println(ans);
     }
 
