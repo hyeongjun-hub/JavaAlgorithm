@@ -80,4 +80,4 @@ public class Main {
         }
     }
 
-} // End of Main class
+} // End of Solution class

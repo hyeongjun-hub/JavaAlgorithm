@@ -7,7 +7,7 @@ package baekjoon._1027;//package baekjoon._1027;
 //import java.io.InputStreamReader;
 //import java.util.StringTokenizer;
 //
-//public class Main {
+//public class Solution {
 //
 //    static int N, ans;
 //    static double[] input;

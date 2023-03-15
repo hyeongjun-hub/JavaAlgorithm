@@ -151,7 +151,7 @@ class Main {
 //import java.util.Queue;
 //import java.util.StringTokenizer;
 //
-//public class Main {
+//public class Solution {
 //
 //    static int R, C, T, time =  0, ans;
 //    static int[][] A;

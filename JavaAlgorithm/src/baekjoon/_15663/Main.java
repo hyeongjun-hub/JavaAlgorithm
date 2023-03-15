@@ -8,7 +8,7 @@ package baekjoon._15663;
 //import java.util.LinkedHashSet;
 //import java.util.StringTokenizer;
 //
-//public class Main {
+//public class Solution {
 //
 //    static int N, M;
 //    static int[] inputNums;

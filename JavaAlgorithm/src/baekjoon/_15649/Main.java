@@ -17,7 +17,7 @@ package baekjoon._15649;
 //// O(M)
 //
 //
-//public class Main {
+//public class Solution {
 //    static StringBuilder sb = new StringBuilder();
 //    static int N, M;
 //    static int[] selected;
